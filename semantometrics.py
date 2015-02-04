@@ -58,8 +58,8 @@ def distance_sum(matrix):
 
 def main(): 
     """Retrieves the files and calculates the Contribution score."""
-    a_files = glob.glob('a*.txt')
-    b_files = glob.glob('b*.txt')
+    a_files = glob.glob('dataset/sample/a*.txt')
+    b_files = glob.glob('dataset/sample/b*.txt')
 
     # Create Similarity objects
     s_a = Similarity(a_files)
