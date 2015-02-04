@@ -5,29 +5,53 @@ import glob
 import numpy as np
 import nltk
 import string
+import re
 
 class Similarity: 
     """Calculates the similarity of a set of files"""
     files = set()
+    vectorizer = TfidfVectorizer()
 
     def __init__(self, files):
         self.files = files
 
     def tokenize(self, text):
         """Tokenizes, removes punctuation and stems the given text.""" 
-        words = nltk.word_tokenize(text)
-        tokens = filter(lambda w: w not in string.punctuation, words)
+        tokens = nltk.word_tokenize(text)
+        tokens = self.remove_punctuation(tokens)
+        tokens = self.remove_digits(tokens)
         stemmer = nltk.stem.snowball.EnglishStemmer()
         #stemmer = nltk.stem.porter.PorterStemmer() # Alternative stemmer
-        return [stemmer.stem(t) for t in tokens]
+        t = [stemmer.stem(t) for t in tokens]
+        return t
+
+    def remove_punctuation(self, tokens):
+        """
+        Removes any punctuation from a list of tokens
+
+        >>> s = Similarity(None)
+        >>> s.remove_punctuation(['abc', ':', 'def', ';'])
+        ['abc', 'def']
+        """
+        return filter(lambda t: t not in string.punctuation, tokens)
+
+    def remove_digits(self, tokens):
+        """
+        Removes any token having a digit from a list of tokens
+
+        >>> s = Similarity(None)
+        >>> s.remove_digits(['abc', 'a2c', '1987'])
+        ['abc']
+        """
+        return filter(lambda t: not re.search(r'\d', t), tokens)
 
     def pairwise_similarity(self): 
         """
         Returns the cosine similarity of a set of files.
         Idea from http://stackoverflow.com/a/8897648/3710392
         """
-        vectorizer = TfidfVectorizer(input='filename', tokenizer=self.tokenize, stop_words='english')
-        tfidf = vectorizer.fit_transform(self.files)
+        self.vectorizer = TfidfVectorizer(input='filename', tokenizer=self.tokenize, stop_words='english')
+        tfidf = self.vectorizer.fit_transform(self.files)
         return (tfidf * tfidf.T).A
         # retrieving a specific value: print ((tfidf * tfidf.T).A)[0,1]
 
@@ -39,6 +63,13 @@ class Similarity:
         else: 
             ps = self.pairwise_similarity()
             return (1 / (l * (l - 1))) * distance_sum(ps)
+
+    def print_vocabulary(self): 
+        """Prints the vocabulary to a file"""
+        f = open('vocab.txt', 'w')
+        for v in self.vectorizer.vocabulary_: 
+            f.write(v.encode('utf-8') + '\n')
+
 
 def distance_sum(matrix):
     """Returns the total sum of 1 - matrix, minus the main diagonal.
