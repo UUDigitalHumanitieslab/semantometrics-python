@@ -24,16 +24,10 @@ class Similarity:
     def pairwise_similarity(self): 
         """
         Returns the cosine similarity of a set of files.
-        Copied (mostly) from http://stackoverflow.com/a/8897648/3710392
+        Idea from http://stackoverflow.com/a/8897648/3710392
         """
-        documents = list()
-        for f in self.files: 
-            with open(f, 'r') as doc: 
-                r = doc.read()
-                documents.append(r)
-                #print tokenize(r.decode('utf-8'))
-
-        tfidf = TfidfVectorizer(tokenizer=self.tokenize, stop_words='english').fit_transform(documents)
+        vectorizer = TfidfVectorizer(input='filename', tokenizer=self.tokenize, stop_words='english')
+        tfidf = vectorizer.fit_transform(self.files)
         return (tfidf * tfidf.T).A
         # retrieving a specific value: print ((tfidf * tfidf.T).A)[0,1]
 
