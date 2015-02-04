@@ -6,6 +6,10 @@ Semantometrics is a Python script that tries to mimic the semantometrics researc
 
 To get from PDF files (the de facto standard for research papers) to plain text files, we used the [PDFMiner](https://euske.github.io/pdfminer/) package without modifications. An alternative would be [Apache Tika](http://tika.apache.org/). 
 
+## HTML to text
+
+To get from HTML files to plain text files, we used the [BeautifulSoup](https://euske.github.io/pdfminer/) pacakge. 
+
 ## Semantic Similarity
 
 For tf-idf calculation (the measure used in Knuth and Herrmannova's article) we use the [scikit-learn](http://scikit-learn.org/) implementation with a modified tokenization: [NLTK](http://www.nltk.org/)'s implementation of the [Porter2 (Snowball) stemmer](http://snowball.tartarus.org/). We also opted to remove punctuation. 
