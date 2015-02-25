@@ -1,6 +1,8 @@
 from bs4 import BeautifulSoup
 import glob
 
+
+# Transforms a set of .html-files into .txt.
 def main():
     files = glob.glob('*.html')
 
@@ -12,4 +14,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-    
