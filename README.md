@@ -22,15 +22,18 @@ which is actually used by Knoth and Herrmanova.
 
 ### HTML to text
 
-* **File:** 
-*html2txt_cultmach.py*
+* **Files:** 
+*html2txt_cultmach.py*, 
 *html2txt_theoryandevent.py*
 * **Usage:** 
 Just move the script to a folder with .html-files and run it. It will output .txt-files. 
 * **Packages used:** 
 To get from HTML files to plain text files, we use the [BeautifulSoup](https://euske.github.io/pdfminer/) package.
-The HTML format is used by a few research papers, usually with different formats (YMMV), 
-that's why there are a few of these files in the repository. 
+The HTML format is used by a few research papers, usually with different lay-out (YMMV), 
+that's why there are a few of these converters in the repository.   
+Currently supported journals: 
+    - [Culture Machine](http://www.culturemachine.net/)
+    - [Theory and Event](http://muse.jhu.edu/journals/theory_and_event/)
 
 ## Tools
 
