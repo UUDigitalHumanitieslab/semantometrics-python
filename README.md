@@ -61,8 +61,8 @@ We can also use tf-idf to calculate semantic similarity between files instead of
 We can then use this measure (called *cosine similiarity*) as weights on an undirected graph. 
 This allows us to do all sorts of cluster analysis with tools like [Gephi](http://gephi.github.io/). 
 The script creates two input files for Gephi: 
-- *nodes.csv*, which contains the nodes of the network 
-- *edges.csv*, which contains the weighted edges of the network. 
+    - *nodes.csv*, which contains the nodes of the network 
+    - *edges.csv*, which contains the weighted edges of the network. 
 * **Packages used:** 
 We use the same measure of similarity as in the above semantic similarity tool. 
 
@@ -71,15 +71,27 @@ We use the same measure of similarity as in the above semantic similarity tool.
 * **File:** 
 *topic_extraction.py*
 * **Usage:** 
-TODO
+This script can be used to generate clusters from a corpus based on semantic similarity. 
+The script uses [*k*-means clustering](http://en.wikipedia.org/wiki/K-means_clustering). 
+Per cluster, the top terms can be identified, which makes it a bit more insightful than the clustering with Gephi above. 
+The script creates two output files per *k* number of clusters: 
+    - *clusters<k>.txt*, which contains the top terms per cluster
+    - *clusters<k>.csv*, which contains the cluster association for each input file. 
+Also, a graph is plotted with the inertia per *k* number of clusters, so that a value for *k* can be chosen
+with the [elbow method](http://en.wikipedia.org/wiki/Determining_the_number_of_clusters_in_a_data_set#The_Elbow_Method).
 * **Packages used:** 
-TODO
+The script uses the [scikit-learn](http://scikit-learn.org/) implementation of K-means clustering, 
+and again the tf-idf calculation from the same package, this time with the built-in tokenization. 
+For the most part, the script is adapted from 
+[an example on the scikit-learn website](http://scikit-learn.org/stable/auto_examples/document_clustering.html) 
+to which the looping over *k*, the output files and the plotting of the inertia were added.  
+To plot the inertia, the script uses [matplotlib](http://matplotlib.org/). 
 
 ### Corpus counting
 
 * **File:** 
 *corpus_count.py*
 * **Usage:** 
-TODO
+This script can be used to count the number of occurrences of a certain list of words in a corpus. 
 * **Packages used:** 
-TODO
+The script uses the [scikit-learn](http://scikit-learn.org/) implementation of word counting. 
