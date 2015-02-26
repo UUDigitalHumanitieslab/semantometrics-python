@@ -57,7 +57,12 @@ We also opted to remove punctuation and tokens that contain digits (e.g. '1987' 
 * **File:** 
 *gephi_input.py*
 * **Usage:** 
-This tool creates two .csv-files to be read in with [Gephi](http://gephi.github.io/). 
+We can also use tf-idf to calculate semantic similarity between files instead of sets of files. 
+We can then use this measure (called *cosine similiarity*) as weights on an undirected graph. 
+This allows us to do all sorts of cluster analysis with tools like [Gephi](http://gephi.github.io/). 
+The script creates two input files for Gephi: 
+- *nodes.csv*, which contains the nodes of the network 
+- *edges.csv*, which contains the weighted edges of the network. 
 * **Packages used:** 
 We use the same measure of similarity as in the above semantic similarity tool. 
 
