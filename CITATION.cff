@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+title: semantometrics-python
+message: >-
+  Toolset that tries to mimic the semantometrics research contribution measure
+type: software
+authors:
+  - name: >-
+      Research Software Lab, Centre for Digital Humanities,
+      Utrecht University
+    country: NL
+    city: Utrecht
+    website: >-
+      https://cdh.uu.nl/centre-for-digital-humanities/research-software-lab/
+repository-code: >-
+  https://github.com/UUDigitalHumanitieslab/semantometrics-python
+keywords:
+  - semantometrics
+  - Python
+  - humanities
+license: BSD-3-Clause
