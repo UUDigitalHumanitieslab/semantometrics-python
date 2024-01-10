@@ -1,5 +1,8 @@
 # semantometrics-python
 
+[![DOI](https://zenodo.org/badge/28969464.svg)](https://zenodo.org/doi/10.5281/zenodo.10479246)
+
+
 *semantometrics-python* is a Python toolset that tries to mimic the semantometrics research contribution measure, 
 as being described by Petr Knoth and Drahomira Herrmannova in their 
 [2014 article](http://www.dlib.org/dlib/november14/knoth/11knoth.html). 
